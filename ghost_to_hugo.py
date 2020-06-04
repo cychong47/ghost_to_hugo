@@ -5,11 +5,7 @@ import os
 import json
 
 """
-Quick-n-dirty
-
-TO-DO
-[ ] Convert to class
-[ ] Handle post body itself
+Quick-n-dirty ghost-to-hugo converter
 """
 
 
@@ -43,7 +39,7 @@ def write_md(posts, p_tag_map):
             if post["id"] in p_tag_map:
                 md.write("""tags: %s  \n""" %p_tag_map[post["id"].encode("utf-8")])
             md.write("---\n\n")
-            md.write(post["plaintext"].encode("utf-8"))
+            md.write(post["mobiledoc"])
 
 def build_tag_map(tags):
     tag_list = {}
@@ -60,13 +56,13 @@ def build_post2tag_map(posts_tags, tag_map):
     """
     p_tag_map = {}
     for p_tag in posts_tags:
-        post_id = p_tag["post_id"]
-        tag_id = p_tag["tag_id"]
+        post_id = p_tag["post_id"].encode("utf-8")
+        tag_id = p_tag["tag_id"].encode("utf-8")
 
         if post_id in p_tag_map:
-            p_tag_map[post_id].append(tag_map[tag_id].encode("utf-8"))
+            p_tag_map[post_id].append(tag_map[tag_id])
         else:
-            p_tag_map[post_id] = [tag_map[tag_id].encode("utf-8")]
+            p_tag_map[post_id] = [ tag_map[tag_id] ]
 
 #    for p_tag in p_tag_map:
 #        print(p_tag, p_tag_map[p_tag])
