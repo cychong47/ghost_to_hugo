@@ -1,7 +1,11 @@
 # ghost_to_hugo
 
-Convert Ghost json file to hugo markdown files
-Ghost does not have `category`. All posts are assigned 'note' category
+Convert Ghost-exported json file to hugo markdown files
+Support Ghost v3
+
+# hacks
+
+* Ghost does not have `category`. All posts are assigned 'note' category
 
 # TO-DO
 
